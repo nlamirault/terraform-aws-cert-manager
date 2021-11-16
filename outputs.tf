@@ -13,6 +13,6 @@
 # limitations under the License.
 
 output "role_arn" {
-  value       = element(aws_iam_role.cert_manager.*.arn, 0)
+  value       = module.role.iam_role_arn
   description = "Role ARN for Cert-Manager"
 }

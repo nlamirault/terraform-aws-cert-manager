@@ -12,26 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-data "aws_iam_policy_document" "assume_role_policy" {
-  statement {
-    actions = ["sts:AssumeRoleWithWebIdentity"]
-    effect  = "Allow"
+module "role" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
+  version = "4.7.0"
 
-    condition {
-      test     = "StringEquals"
-      variable = "${replace(data.aws_secretsmanager_secret_version.oidc_url.secret_binary, "https://", "")}:sub"
-      values   = [format("system:serviceaccount:%s:%s", var.namespace, var.service_account)]
-    }
+  create_role      = true
+  role_description = "Role for External DNS"
+  role_name        = local.role_name
+  provider_url     = data.aws_eks_cluster.this.identity[0].oidc[0].issuer
+  role_policy_arns = [
 
-    principals {
-      identifiers = [data.aws_secretsmanager_secret_version.oidc_arn.secret_binary]
-      type        = "Federated"
-    }
-  }
-}
-
-resource "aws_iam_role" "cert_manager" {
-  assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
-  name               = local.service_name
-  tags               = var.tags
+  ]
+  oidc_fully_qualified_subjects = [
+    "system:serviceaccount:${var.namespace}:${var.service_account}"
+  ]
+  tags = merge(
+    { "Name" = local.role_name },
+    local.tags
+  )
 }

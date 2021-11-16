@@ -5,7 +5,7 @@
 ## Usage
 
 ```hcl
-module "external_dns" {
+module "cert_manager" {
   source  = "nlamirault/cert-manager/aws"
   version = "1.0.0"
 
@@ -26,7 +26,7 @@ project = "foo-prod"
 region = "europe-west1"
 
 ##############################################################################
-# External DNS
+# Cert-Manager
 
 namespace       = "dns"
 service_account = "cert-manager"
@@ -39,40 +39,39 @@ service_account = "cert-manager"
 
 | Name | Version |
 |------|---------|
-| terraform | >= 1.0.0 |
-| aws | >= 3.26.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.26.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.26.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.26.0 |
 
 ## Modules
 
-No Modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_role"></a> [role](#module\_role) | terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc | 4.7.0 |
 
 ## Resources
 
-| Name |
-|------|
-| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/3.26.0/docs/data-sources/iam_policy_document) |
-| [aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/3.26.0/docs/resources/iam_role) |
-| [aws_secretsmanager_secret](https://registry.terraform.io/providers/hashicorp/aws/3.26.0/docs/data-sources/secretsmanager_secret) |
-| [aws_secretsmanager_secret_version](https://registry.terraform.io/providers/hashicorp/aws/3.26.0/docs/data-sources/secretsmanager_secret_version) |
+| Name | Type |
+|------|------|
+| [aws_eks_cluster.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| cluster\_name | Name of the EKS cluster | `string` | n/a | yes |
-| namespace | The Kubernetes namespace | `string` | n/a | yes |
-| service\_account | The Kubernetes service account | `string` | n/a | yes |
-| tags | Tags for VPC | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | The Kubernetes namespace | `string` | n/a | yes |
+| <a name="input_service_account"></a> [service\_account](#input\_service\_account) | The Kubernetes service account | `string` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags for VPC | `map(string)` | <pre>{<br>  "made-by": "terraform"<br>}</pre> | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| role\_arn | Role ARN for Cert-Manager |
+| <a name="output_role_arn"></a> [role\_arn](#output\_role\_arn) | Role ARN for Cert-Manager |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

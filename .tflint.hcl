@@ -51,10 +51,13 @@ plugin "aws" {
 ###############################################################################
 # PORTEFAIX
 
-plugin "portefaix" {
-  enabled = true
-}
+# plugin "portefaix" {
+#   enabled = true
 
-rule "terraform_portefaix_standard_structure" { enabled = false }
-rule "terraform_portefaix_standard_files" { enabled = false }
-rule "terraform_portefaix_tfenv" { enabled = true }
+#   version = "0.1.0"
+#   source  = "github.com/portefaix/tflint-ruleset-portefaix"
+# }
+
+# rule "terraform_portefaix_standard_structure" { enabled = false }
+# rule "terraform_portefaix_standard_files" { enabled = false }
+# rule "terraform_portefaix_tfenv" { enabled = true }

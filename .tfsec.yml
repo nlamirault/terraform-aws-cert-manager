@@ -12,15 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-locals {
-  role_name = "cert-manager"
-
-  tags = merge(
-    var.tags,
-    {
-      "Made-By" = "terraform"
-      "Service" = "cert-manager"
-      "Iam"     = "eks-cert-manager"
-    }
-  )
-}
+---
+exclude:
+  - AWS002
+  - AWS017

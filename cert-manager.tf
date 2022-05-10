@@ -14,7 +14,7 @@
 
 module "role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
-  version = "4.20.1"
+  version = "4.24.1"
 
   create_role      = true
   role_description = "Role for External DNS"

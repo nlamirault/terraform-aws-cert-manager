@@ -1,5 +1,8 @@
 # Cert-Manager into AWS
 
+See: https://github.com/terraform-aws-modules/terraform-aws-iam/tree/master/modules/iam-role-for-service-accounts-eks
+
+
 ![Tfsec](https://github.com/nlamirault/terraform-aws-cert-manager/workflows/Tfsec/badge.svg)
 
 ## Usage
